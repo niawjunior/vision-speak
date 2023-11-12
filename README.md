@@ -4,6 +4,10 @@ CameraVision: Capture, Analyze, and Listen - Seamlessly integrate real-time imag
 
 
 
+
+https://github.com/niawjunior/vision-speak/assets/17493195/2781d4d0-ef5c-42a2-b6cb-3d7988cf9141
+
+
 https://github.com/niawjunior/vision-speak/assets/17493195/6256621c-26ba-443f-b4b4-9ceb1a6d554b
 
 
