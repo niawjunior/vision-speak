@@ -2,26 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital@0;1&display=swap");
+
+* {
+  margin: 0;
+  font-family: "Kanit", sans-serif;
+}
+video {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 70vh !important;
+  object-fit: cover !important;
+  z-index: 5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.camera-container {
+  position: relative;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.camera-footer {
+  width: 100%;
+  position: absolute;
+}
+.camera-icon {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 20px;
+  padding: 1rem;
+  align-items: center;
+  width: 50%;
+}
+.camera-icon svg {
+  height: 100px;
+  width: 100px;
+}
+
+.sound-icon svg {
+  height: 20px;
+  width: 20px;
+}
+
+.message {
+  position: absolute;
+  background: white;
+  margin: 1rem;
+  opacity: 0.8;
+  padding-top: 1rem;
+  z-index: 9;
+}
+
+.message-container {
+  padding: 1rem;
+}
+
+.image-captured {
+  color: transparent;
+  min-height: 70vh;
+  object-fit: cover;
 }
