@@ -4,15 +4,13 @@ import React, { useRef, useState, useCallback } from "react"
 import Webcam from "react-webcam"
 
 const Camera = () => {
-  const [audioSrc, setAudioSrc] = useState<any>(null)
-
+  const [audioSrc, setAudioSrc] = useState<string | null>(null)
   const webcamRef = useRef<Webcam>(null)
-  const audioRef = useRef<any>(null)
+  const audioRef = useRef<HTMLAudioElement>(null)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [message, setMessage] = useState<any>({
+  const [message, setMessage] = useState<{ content: string }>({
     content: "",
   })
-
   const [capturedImage, setCapturedImage] = useState("")
   const [cameraActive, setCameraActive] = useState(true)
 
@@ -37,11 +35,10 @@ const Camera = () => {
 
   const captureAndSend = useCallback(async () => {
     if (!isProcessing && webcamRef.current) {
-      console.log("calling api")
-      setIsProcessing(true)
-      setCameraActive(false) // Stop the camera after capturing the image
-
       const imageSrc = webcamRef.current.getScreenshot()
+      setIsProcessing(true)
+      setCameraActive(false)
+
       setCapturedImage(imageSrc!)
       try {
         const response = await fetch("/api/vision", {
@@ -54,29 +51,20 @@ const Camera = () => {
 
         const result = await response
         setMessage(result.message.message)
-        handleClick(result.message.message?.content)
+        textToSpeech(result.message.message?.content)
       } catch (error) {
         console.error("Error sending image to the API:", error)
         setIsProcessing(false)
       }
     }
-  }, [isProcessing])
+  }, [webcamRef, isProcessing])
 
   const videoConstraints = {
     facingMode: "environment",
   }
 
   const close = () => {
-    setMessage({
-      content: "",
-    })
-    setCameraActive(true) // Stop the camera after capturing the image
-    setAudioSrc(null)
     window.location.reload()
-  }
-
-  const handleClick = (text: string) => {
-    textToSpeech(text)
   }
 
   return (
@@ -96,7 +84,7 @@ const Camera = () => {
             <audio ref={audioRef} src={"/audio/generatedAudio.mp3"} />
             <div className="w-full flex justify-end">
               <button
-                onClick={() => audioRef.current.play()}
+                onClick={() => audioRef.current!.play()}
                 className="bg-green-500 p-1 rounded-full m-1"
               >
                 <div className="sound-icon ">
