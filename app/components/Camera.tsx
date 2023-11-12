@@ -4,7 +4,6 @@ import React, { useRef, useState, useCallback } from "react"
 import Webcam from "react-webcam"
 
 const Camera = () => {
-  const [audioSrc, setAudioSrc] = useState<string | null>(null)
   const webcamRef = useRef<Webcam>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isProcessing, setIsProcessing] = useState(false)
@@ -164,11 +163,6 @@ const Camera = () => {
             </svg>
           </button>
         </div>
-      </div>
-      <div className="flex justify-center">
-        {audioSrc && (
-          <audio id="audioPlayer" ref={audioRef} src={audioSrc} controls />
-        )}
       </div>
     </div>
   )
