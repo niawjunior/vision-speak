@@ -11,7 +11,7 @@
 video {
   width: 100% !important;
   max-width: 100% !important;
-  height: 70vh !important;
+  height: 85vh !important;
   object-fit: cover !important;
   z-index: 5;
 }
@@ -74,6 +74,6 @@ video {
 
 .image-captured {
   color: transparent;
-  min-height: 70vh;
+  min-height: 85vh;
   object-fit: cover;
 }

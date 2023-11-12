@@ -72,6 +72,7 @@ const Camera = () => {
     })
     setCameraActive(true) // Stop the camera after capturing the image
     setAudioSrc(null)
+    window.location.reload()
   }
 
   const handleClick = (text: string) => {
